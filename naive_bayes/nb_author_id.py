@@ -30,11 +30,15 @@ from sklearn.naive_bayes import GaussianNB
 
 clf = GaussianNB()
 
+t0 = time()
 clf.fit(features_train, labels_train)
-accuracy = clf.score(features_test, labels_test)
+print "traning time:", round(time()-t0, 3), " s"
 
-print "Number of test data sets: ", len(features_test)
-print "Accuracy: ", accuracy
+print "number of test data sets:", len(features_test)
+t0 = time()
+accuracy = clf.score(features_test, labels_test)
+print "test time:", round(time()-t0, 3), " s"
+print "accuracy:", accuracy
 
 #########################################################
 

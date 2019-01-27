@@ -26,7 +26,15 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+from sklearn.naive_bayes import GaussianNB
 
+clf = GaussianNB()
+
+clf.fit(features_train, labels_train)
+accuracy = clf.score(features_test, labels_test)
+
+print "Number of test data sets: ", len(features_test)
+print "Accuracy: ", accuracy
 
 #########################################################
 

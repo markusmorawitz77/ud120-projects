@@ -25,21 +25,22 @@ features_train, features_test, labels_train, labels_test = preprocess()
 #########################################################
 ### your code goes here ###
 from sklearn.svm import SVC
+features_train = features_train[:len(features_train)/1] 
+labels_train = labels_train[:len(labels_train)/1] 
 
-clf = SVC(kernel="linear")
+for c in [100]:
+    print 
+    print "train with C =", c
+    clf = SVC(kernel="rbf", gamma="scale", C=c)
+    t0 = time()
+    clf.fit(features_train, labels_train)
+    print "traning time:", round(time()-t0, 3), " s"
 
-features_train = features_train[:len(features_train)/100] 
-labels_train = labels_train[:len(labels_train)/100] 
-
-t0 = time()
-clf.fit(features_train, labels_train)
-print "traning time:", round(time()-t0, 3), " s"
-
-print "number of test data sets:", len(features_test)
-t0 = time()
-accuracy = clf.score(features_test, labels_test)
-print "test time:", round(time()-t0, 3), " s"
-print "accuracy:", accuracy
+    print "number of test data sets:", len(features_test)
+    t0 = time()
+    accuracy = clf.score(features_test, labels_test)
+    print "test time:", round(time()-t0, 3), " s"
+    print "accuracy:", accuracy
 
 
 #########################################################

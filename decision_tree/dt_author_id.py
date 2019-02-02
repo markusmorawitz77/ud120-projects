@@ -24,7 +24,22 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+from sklearn import tree
+from sklearn import metrics
 
+print "Number of features:", len(features_train[0])
+clf = tree.DecisionTreeClassifier(min_samples_split=40)
+
+t0 = time()
+clf.fit(features_train, labels_train)
+print "traning time:", round(time()-t0, 3), " s"
+
+print "number of test data sets:", len(features_test)
+t0 = time()
+predictions = clf.predict(features_test)
+accuracy = metrics.accuracy_score(labels_test, predictions)
+print "test time:", round(time()-t0, 3), " s"
+print "accuracy:", accuracy
 
 #########################################################
 
